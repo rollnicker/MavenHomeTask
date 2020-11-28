@@ -91,12 +91,10 @@ public class MarketPage extends BasePage {
         price.click();
         fillField(price, cost);
     }
-
     public String getFirstTitle() {
         String titleName = item.getAttribute("title");
         return titleName;
     }
-
     public int titlesCount() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 1000);
         wait.until(ExpectedConditions.visibilityOf(item));
@@ -104,21 +102,18 @@ public class MarketPage extends BasePage {
         int titlesCount = titles.size();
         return titlesCount;
     }
-
     public void searchItemByName(String itemName) {
+        headerSearch.click();
         headerSearch.sendKeys(itemName);
         submit.click();
     }
-
-    public WebElement getSearch() {
-        return search;
+    public String getSearchValue() {
+        String searchValue = headerSearch.getAttribute("value");
+        return searchValue;
     }
-
     public void waitTitle() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 1000);
         wait.until(ExpectedConditions.visibilityOf(item));
     }
-
-
 }
 

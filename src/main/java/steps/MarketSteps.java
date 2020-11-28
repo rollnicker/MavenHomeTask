@@ -49,7 +49,7 @@ public class MarketSteps {
     public void stepFillSearchTitle() {
         String nameItem = new MarketPage().getFirstTitle();
         new MarketPage().searchItemByName(nameItem);
-//        new MarketPage().waitTitle();
+        new MarketPage().waitTitle();
 //        String nameItem2 = new MarketPage().getFirstTitle();
 //        assertTrue(String.format("Название заголовка [%s]. В поисковике - [%s]",
 //                nameItem, nameItem2), nameItem.contains(nameItem2));
@@ -67,16 +67,12 @@ public class MarketSteps {
     }
     @Step("сравнить запомненное значение и первый результат")
     public void step (){
-
-        String nameItem = new MarketPage().getSearch().getAttribute("value");
+        String nameItem = new MarketPage().getSearchValue();
         String nameItem2 = new MarketPage().getFirstTitle();
-        assertTrue(String.format("Название заголовка [%s]. В поисковике - [%s]",
-                nameItem2, nameItem), nameItem2.contains(nameItem));
+        assertTrue(nameItem2.contains(nameItem));
     }
     @Step("дождаться загрузки поиска")
     public void stepWaitTitle(){ new  MarketPage().waitTitle();
     }
-
-
 }
 
