@@ -17,10 +17,16 @@ public class MarketPage extends BasePage {
         PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
+
+
     @FindBy(xpath = "//DIV[@role='tablist']")
     WebElement marketItems;
 
+    @FindBy(linkText = "Да, верно")
+    WebElement MoscowRight;
+
     public void selectMarketItem(String itemName) {
+
         marketItems.findElement(By.linkText(itemName)).click();
     }
 
@@ -28,6 +34,7 @@ public class MarketPage extends BasePage {
     WebElement electronicItems;
 
     public void selectElectronicItem(String item) {
+
         electronicItems.findElement(By.linkText(item)).click();
     }
 
@@ -63,13 +70,10 @@ public class MarketPage extends BasePage {
     @FindBy(id = "7893318-suggester")
     WebElement search;
 
-    @FindBy(xpath = "//a[@class='_27nuSZ19h7 wwZc93J2Ao cia-cs']")
-    WebElement TitleOfItem;
-
     @FindBy(id = "glpricefrom")
     WebElement price;
 
-    @FindBy(xpath = "//a[@class='_27nuSZ19h7 wwZc93J2Ao cia-cs']")
+    @FindBy(xpath = "//article[@data-zone-name='snippet-card']//h3/a")
     WebElement item;
 
     @FindBy(id = "header-search")
@@ -106,6 +110,7 @@ public class MarketPage extends BasePage {
     }
 
     public void searchItemByName(String itemName) {
+        headerSearch.clear();
         headerSearch.sendKeys(itemName);
         submit.click();
     }
@@ -113,10 +118,21 @@ public class MarketPage extends BasePage {
     public WebElement getSearch() {
         return search;
     }
+    public String getSearchTitle() {
+        String searchTitle = headerSearch.getText();
+        return searchTitle;
+    }
 
     public void waitTitle() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 1000);
         wait.until(ExpectedConditions.visibilityOf(item));
+    }
+    @FindBy(xpath = "//span[contains(text(),'Результаты поиска во всех категориях')]")
+    WebElement nextPage;
+
+    public void waitNextPage() {
+        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 1000);
+        wait.until(ExpectedConditions.visibilityOf(nextPage));
     }
 
 

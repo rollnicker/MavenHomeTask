@@ -36,7 +36,7 @@ public class ScenarioSteps {
     public void titlesCountCheck (int expectedCount) {
         marketSteps.stepCheckTitleCount(expectedCount -1);
     }
-    @When("^В поисковую строку ввести первый элемент в списке и проверить, что наименование товара соответствует запомненному значению.$")
+    @When("^в поисковую строку ввести первый элемент в списке$")
     public void titlestCheck() {
         marketSteps.stepFillSearchTitle();
     }
@@ -44,10 +44,12 @@ public class ScenarioSteps {
     public void stepWaitTitle() {
         marketSteps.stepWaitTitle();
     }
-    @When("^ вот вот $")
+    @When("^проверить запомненое значение и название товара$")
     public void stepCheck() {
-        marketSteps.step ();
+        marketSteps.step();
     }
+    @Then("^дождаться загрузки новой страницы$")
+    public void stepWaitPage() {marketSteps.stepWaitPage(); }
 
         // TV
 

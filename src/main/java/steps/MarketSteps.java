@@ -11,9 +11,9 @@ import static org.junit.Assert.assertTrue;
 
 public class MarketSteps {
 
+    public String nameItem;
 
     Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 1000);
-
 
     @Step("выбран пункт меню маркета {0}")
     public void stepSelectMarketItem(String menuItem) {
@@ -47,7 +47,7 @@ public class MarketSteps {
 
     @Step("ввести в поиск по маркету первое из списка")
     public void stepFillSearchTitle() {
-        String nameItem = new MarketPage().getFirstTitle();
+        nameItem = new MarketPage().getFirstTitle();
         new MarketPage().searchItemByName(nameItem);
 //        new MarketPage().waitTitle();
 //        String nameItem2 = new MarketPage().getFirstTitle();
@@ -66,17 +66,22 @@ public class MarketSteps {
         }
     }
     @Step("сравнить запомненное значение и первый результат")
-    public void step (){
+    public void step(){
 
-        String nameItem = new MarketPage().getSearch().getAttribute("value");
-        String nameItem2 = new MarketPage().getFirstTitle();
+        String nameItem3 = new MarketPage().getFirstTitle();
         assertTrue(String.format("Название заголовка [%s]. В поисковике - [%s]",
-                nameItem2, nameItem), nameItem2.contains(nameItem));
+                nameItem, nameItem3), nameItem.contains(nameItem3));
     }
     @Step("дождаться загрузки поиска")
-    public void stepWaitTitle(){ new  MarketPage().waitTitle();
+    public void stepWaitTitle(){
+        new  MarketPage().waitTitle();
+        }
+    @Step("дождаться загрузки новой страницы")
+    public void stepWaitPage(){
+        new  MarketPage().waitNextPage();
+    }
     }
 
 
-}
+
 
