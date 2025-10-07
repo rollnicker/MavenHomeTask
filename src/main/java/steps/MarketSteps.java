@@ -21,7 +21,7 @@ public class MarketSteps {
     }
 
     @Step("выбран тип электроники {0}")
-    public void sterpSelectElectronicItem(String menuItem) {
+    public void stepSelectElectronicItem(String menuItem) {
         new MarketPage().selectElectronicItem(menuItem);
     }
 
